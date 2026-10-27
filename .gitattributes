@@ -1,0 +1,4 @@
+# Exclude bundled third-party cryptographic libraries from GitHub language stats.
+Sources/CSQLCipher/** linguist-vendored
+Sources/CVaultCrypto/sodium/** linguist-vendored
+Vendor/** linguist-vendored
