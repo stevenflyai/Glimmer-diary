@@ -4,7 +4,7 @@
 
 <h1 align="center">Glimmer · 拾光</h1>
 
-<p align="center"><strong>Keep the little moments.</strong><br>macOS 14+ · Apple Silicon · Local encryption · Private journaling</p>
+<p align="center"><strong>Keep the little moments.</strong><br>macOS 14+ · Apple Silicon · Local encryption · Private journaling<br><a href="https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.2/Glimmer-1.1.2-AppleSilicon.dmg"><strong>Download for macOS · v1.1.2</strong></a> · <a href="https://github.com/stevenflyai/Glimmer-diary/releases/tag/v1.1.2">Release notes</a></p>
 
 <p align="center">
   <a href="README.md">简体中文</a> · <strong>English</strong>
@@ -92,7 +92,7 @@ Encryption protects app data stored on disk. Content visible while the app is un
 
 **Current version: 1.1.2 · Apple Silicon (M-series Macs) · macOS 14 or later**
 
-1. Look for an Apple Silicon `.dmg` in this repository's **Releases**. If a package is not available, you can build from source below.
+1. [Download the installer (v1.1.2 · Apple Silicon)](https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.2/Glimmer-1.1.2-AppleSilicon.dmg), or visit [Releases](https://github.com/stevenflyai/Glimmer-diary/releases) for release notes and SHA-256 checksums. You can also build from source below.
 2. Quit any running older version, open the disk image, and drag the app into Applications. Updates continue to use your existing password and entries.
 3. On first launch, choose a password of at least 10 characters. A unique, long passphrase is recommended. Save your recovery key and confirm its last eight characters.
 4. Choose **New entry** and start writing. Glimmer saves after a pause of about a second; `⌘S` saves immediately.

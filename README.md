@@ -4,7 +4,7 @@
 
 <h1 align="center">拾光 · Glimmer</h1>
 
-<p align="center"><strong>把生活，轻轻收好。</strong><br>macOS 14+ · Apple Silicon · 本机加密 · 私人日记</p>
+<p align="center"><strong>把生活，轻轻收好。</strong><br>macOS 14+ · Apple Silicon · 本机加密 · 私人日记<br><a href="https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.2/Glimmer-1.1.2-AppleSilicon.dmg"><strong>下载 macOS 版 · v1.1.2</strong></a> · <a href="https://github.com/stevenflyai/Glimmer-diary/releases/tag/v1.1.2">版本说明</a></p>
 
 <p align="center">
   <strong>简体中文</strong> · <a href="README.en.md">English</a>
@@ -92,7 +92,7 @@
 
 **当前版本：1.1.2 · Apple Silicon（M 系列）· 最低 macOS 14**
 
-1. 在本仓库的 **Releases** 中选择 Apple Silicon 的 `.dmg` 安装包；没有安装包时，也可以按下文从源码构建。
+1. [下载安装包（v1.1.2 · Apple Silicon）](https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.2/Glimmer-1.1.2-AppleSilicon.dmg)，或在 [Releases](https://github.com/stevenflyai/Glimmer-diary/releases) 查看版本说明和 SHA-256 校验文件；也可以按下文从源码构建。
 2. 退出正在运行的旧版，打开安装包，将“拾光”拖入“应用程序”。升级后继续使用原密码和原有日记。
 3. 首次打开时设置至少 10 个字符的密码，推荐使用独特的长短语；保存恢复密钥并核对最后 8 位。
 4. 点击“写一篇日记”，记录第一句话。停顿约一秒后自动保存，也可以按 `⌘S` 立即保存。
