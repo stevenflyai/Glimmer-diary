@@ -1,0 +1,5 @@
+"CFBundleDisplayName" = "Glimmer";
+"CFBundleName" = "Glimmer";
+"NSLocationUsageDescription" = "Look up the weather while writing your diary. Only an approximate location is sent to the weather service. Your location is not tracked in the background.";
+"NSLocationWhenInUseUsageDescription" = "Look up local weather while writing your diary. Only the city and weather are saved.";
+"com.shiguang.backup" = "Glimmer encrypted backup";

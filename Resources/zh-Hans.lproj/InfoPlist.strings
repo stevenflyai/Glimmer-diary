@@ -1,0 +1,5 @@
+"CFBundleDisplayName" = "拾光";
+"CFBundleName" = "拾光";
+"NSLocationUsageDescription" = "写日记时查询当前位置的天气。只向天气服务发送近似位置，不在后台追踪。";
+"NSLocationWhenInUseUsageDescription" = "写日记时查询当前位置的天气，仅记录城市和天气。";
+"com.shiguang.backup" = "拾光加密备份";

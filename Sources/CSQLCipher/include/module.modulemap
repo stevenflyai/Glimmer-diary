@@ -1,0 +1,4 @@
+module CSQLCipher {
+    header "CSQLCipher.h"
+    export *
+}
