@@ -4,7 +4,7 @@
 
 <h1 align="center">拾光 · Glimmer</h1>
 
-<p align="center"><strong>把生活，轻轻收好。</strong><br>macOS 14+ · Apple Silicon · 本机加密 · 私人日记<br><a href="https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.2/Glimmer-1.1.2-AppleSilicon.dmg"><strong>下载 macOS 版 · v1.1.2</strong></a> · <a href="https://github.com/stevenflyai/Glimmer-diary/releases/tag/v1.1.2">版本说明</a></p>
+<p align="center"><strong>把生活，轻轻收好。</strong><br>macOS 14+ · Apple Silicon · 本机加密 · 私人日记<br><a href="https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.3/Glimmer-1.1.3-AppleSilicon.dmg"><strong>下载 macOS 版 · v1.1.3</strong></a> · <a href="https://github.com/stevenflyai/Glimmer-diary/releases/tag/v1.1.3">版本说明</a></p>
 
 <p align="center">
   <strong>简体中文</strong> · <a href="README.en.md">English</a>
@@ -15,7 +15,7 @@
 
 ![拾光中文主界面：日记本、时间列表、富文本编辑器与本机加密保存状态](docs/images/journal-zh.png)
 
-<p align="center"><sub>当前版本 1.1.2 的实际界面。所有预览均使用专门准备的示例日记。</sub></p>
+<p align="center"><sub>界面预览来自 1.1.2；1.1.3 已将格式工具全部展开。所有预览均使用专门准备的示例日记。</sub></p>
 
 ## 为自己留一页
 
@@ -29,7 +29,7 @@
 | 你想做的事 | 拾光可以帮你 |
 | --- | --- |
 | 随手记下今天 | 自动保存；同一天写多篇；补写过去的日期；中文、英文输入 |
-| 写得更有自己的样子 | 粗体、斜体、下划线、删除线、超链接、文字颜色、背景高亮、字体与字号；列表、引用、分隔线 |
+| 写得更有自己的样子 | 13 项格式工具直接显示，窄窗口自动换行；粗体、斜体、下划线、删除线、链接、颜色、字体、列表、引用、分隔线与清除格式 |
 | 留住一张照片 | 插入、拖入或粘贴 JPEG / PNG / HEIC；在照片旁写下文字；双击放大 |
 | 整理生活的不同侧面 | 多个日记本、心情、标签、收藏、本机全文搜索 |
 | 找回过去的片刻 | 日历浏览、往年今日、历史版本；最近删除保留 30 天 |
@@ -38,6 +38,8 @@
 | 保存和迁移记录 | 加密备份与恢复；导出当前日记或当前列表为 PDF / Markdown 加图片 |
 | 养成自己的节奏 | 可选每日提醒，通知只显示通用文案 |
 | 使用熟悉的语言 | 登录页和设置中切换简体中文 / English，保留原有日记内容与日记本名称 |
+
+列表和引用按段落切换，保留选中文字与图片；回车自动续接，空项再次回车退出。分隔线插入到所选段落之后，支持撤销重做。
 
 图片每张最多 50 MB，每批最多 20 张。Markdown 导出的下划线和颜色使用内联 HTML，显示效果取决于阅读器的 HTML/CSS 支持。
 
@@ -90,9 +92,9 @@
 
 ## 安装与开始
 
-**当前版本：1.1.2 · Apple Silicon（M 系列）· 最低 macOS 14**
+**当前版本：1.1.3 · Apple Silicon（M 系列）· 最低 macOS 14**
 
-1. [下载安装包（v1.1.2 · Apple Silicon）](https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.2/Glimmer-1.1.2-AppleSilicon.dmg)，或在 [Releases](https://github.com/stevenflyai/Glimmer-diary/releases) 查看版本说明和 SHA-256 校验文件；也可以按下文从源码构建。
+1. [下载安装包（v1.1.3 · Apple Silicon）](https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.3/Glimmer-1.1.3-AppleSilicon.dmg)，或在 [Releases](https://github.com/stevenflyai/Glimmer-diary/releases) 查看版本说明和 SHA-256 校验文件；也可以按下文从源码构建。
 2. 退出正在运行的旧版，打开安装包，将“拾光”拖入“应用程序”。升级后继续使用原密码和原有日记。
 3. 首次打开时设置至少 10 个字符的密码，推荐使用独特的长短语；保存恢复密钥并核对最后 8 位。
 4. 点击“写一篇日记”，记录第一句话。停顿约一秒后自动保存，也可以按 `⌘S` 立即保存。
@@ -107,6 +109,7 @@
 | `⌘N` / `⌘S` | 新建日记 / 立即保存 |
 | `⌘B` / `⌘I` / `⌘U` | 粗体 / 斜体 / 下划线 |
 | `⌘K` | 添加或编辑链接 |
+| `Return` / `Shift+Return` | 续接列表或引用（空项退出）/ 段内换行 |
 | `⌘` + 单击链接 | 打开链接 |
 | `⌘F` / `⌘⇧F` | 搜索日记 / 专注模式 |
 | `⌘⇧L` | 锁定日记 |
@@ -155,7 +158,7 @@ Vendor/                静态依赖与来源记录
 docs/images/           README 界面预览
 ```
 
-已在 Apple Silicon / macOS 27.0.1 上完成核心加密、备份恢复、富文本持久化、中文输入、图文导出与双语界面检查。Touch ID、定位权限、通知及不同系统版本的完整组合仍需对应设备验证。详情见 [验证记录](VALIDATION.md)与 [更新记录](CHANGELOG.md)。
+已在 Apple Silicon / macOS 27.0.1 与 27.2 上完成核心加密、备份恢复、富文本持久化、中文输入、图文导出与双语界面检查。Touch ID、定位权限、通知及不同系统版本的完整组合仍需对应设备验证。详情见 [验证记录](VALIDATION.md)与 [更新记录](CHANGELOG.md)。
 
 当前版本专注本机日记；**iCloud 同步、iPhone/iPad 版本、录音、OCR 和 AI 功能尚未提供**。
 

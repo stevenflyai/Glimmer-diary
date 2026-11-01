@@ -13,31 +13,28 @@ struct EditorFormattingToolbar:View {
     @ViewState private var colorRequest:ColorRequest?
     var body:some View {
         let _=model.language
-        HStack(spacing:13) {
+        EditorToolbarLayout() {
+            Menu {
+                Button(L10n.t("宋体")){controller.font(family:"Songti SC")}
+                Button(L10n.t("苹方")){controller.font(family:"PingFang SC")}
+                Button("Helvetica"){controller.font(family:"Helvetica")}
+                Button("Georgia"){controller.font(family:"Georgia")}
+                Button("Menlo"){controller.font(family:"Menlo")}
+            }label:{Text(L10n.t("字体"))}.menuStyle(.borderlessButton).fixedSize().frame(minHeight:28).accessibilityLabel(L10n.t("字体"))
+            Menu {
+                ForEach([14,16,18,20,24,28,32],id:\.self){size in Button("\(size) pt"){controller.font(size:CGFloat(size))}}
+            }label:{Text(L10n.t("字号"))}.menuStyle(.borderlessButton).fixedSize().frame(minHeight:28).accessibilityLabel(L10n.t("字号"))
             button("bold","加粗 ⌘B","bold")
             button("italic","斜体 ⌘I","italic")
             button("underline","下划线 ⌘U","underline")
             button("strikethrough","删除线","strikethrough")
-            Button{controller.beginLink()}label:{Image(systemName:"link")}.help(L10n.t("超链接 ⌘K；⌘ 单击打开链接")).accessibilityLabel(L10n.t("超链接"))
-            Button{openColor(background:false)}label:{Image(systemName:"textformat.alt")}.help(L10n.t("字体颜色")).accessibilityLabel(L10n.t("字体颜色"))
-            Button{openColor(background:true)}label:{Image(systemName:"highlighter")}.help(L10n.t("背景颜色")).accessibilityLabel(L10n.t("背景颜色"))
-            Menu {
-                Menu(L10n.t("字体")) {
-                    Button(L10n.t("宋体")){controller.font(family:"Songti SC")}
-                    Button(L10n.t("苹方")){controller.font(family:"PingFang SC")}
-                    Button("Helvetica"){controller.font(family:"Helvetica")}
-                    Button("Georgia"){controller.font(family:"Georgia")}
-                    Button("Menlo"){controller.font(family:"Menlo")}
-                }
-                Menu(L10n.t("字号")){ForEach([14,16,18,20,24,28,32],id:\.self){size in Button("\(size) pt"){controller.font(size:CGFloat(size))}}}
-                Divider()
-                Button(L10n.t("列表")){controller.format("list")}
-                Button(L10n.t("引用")){controller.format("quote")}
-                Button(L10n.t("分隔线")){controller.format("separator")}
-                Divider()
-                Button(L10n.t("清除文字格式")){controller.format("clear")}
-            }label:{Image(systemName:"ellipsis.circle")}.menuStyle(.borderlessButton).frame(width:22).help(L10n.t("更多文字格式")).accessibilityLabel(L10n.t("更多文字格式"))
-            Spacer(minLength:0)
+            Button{controller.beginLink()}label:{icon("link")}.help(L10n.t("超链接 ⌘K；⌘ 单击打开链接")).accessibilityLabel(L10n.t("超链接"))
+            Button{openColor(background:false)}label:{icon("a.circle")}.help(L10n.t("字体颜色")).accessibilityLabel(L10n.t("字体颜色"))
+            Button{openColor(background:true)}label:{icon("highlighter")}.help(L10n.t("背景颜色")).accessibilityLabel(L10n.t("背景颜色"))
+            button("list.bullet","列表","list")
+            button("text.quote","引用","quote")
+            button("minus","分隔线","separator")
+            button("eraser","清除文字格式","clear")
         }.buttonStyle(.plain).foregroundStyle(JournalTheme.muted)
         .popover(item:$colorRequest) {request in
             EditorColorPicker(background:request.background){color in
@@ -51,7 +48,33 @@ struct EditorFormattingToolbar:View {
         colorRequest=ColorRequest(selection:selection,background:background)
     }
     private func button(_ symbol:String,_ title:String,_ action:String) -> some View {
-        Button{controller.format(action)}label:{Image(systemName:symbol)}.help(L10n.text(title)).accessibilityLabel(L10n.text(title))
+        Button{controller.format(action)}label:{icon(symbol)}.help(L10n.text(title)).accessibilityLabel(L10n.text(title))
+    }
+    private func icon(_ symbol:String) -> some View {Image(systemName:symbol).frame(width:28,height:28).contentShape(Rectangle())}
+}
+
+/// Keep every command visible, including in the narrow three-column editor.
+struct EditorToolbarLayout:Layout {
+    private let spacing:CGFloat=7
+    private func arrange(_ subviews:Subviews,width:CGFloat) -> (positions:[CGPoint],height:CGFloat) {
+        var positions=[CGPoint](),x:CGFloat=0,y:CGFloat=0,rowHeight:CGFloat=0
+        for subview in subviews {
+            let size=subview.sizeThatFits(.unspecified)
+            if x>0 && x+size.width>width {x=0;y += rowHeight+spacing;rowHeight=0}
+            positions.append(CGPoint(x:x,y:y));x += size.width+spacing;rowHeight=max(rowHeight,size.height)
+        }
+        return (positions,y+rowHeight)
+    }
+    func sizeThatFits(proposal:ProposedViewSize,subviews:Subviews,cache:inout ()) -> CGSize {
+        let natural=subviews.reduce(CGFloat(0)){$0+$1.sizeThatFits(.unspecified).width+spacing}-spacing
+        let width=proposal.width.flatMap{$0.isFinite ? $0:nil} ?? max(0,natural)
+        return CGSize(width:width,height:arrange(subviews,width:width).height)
+    }
+    func placeSubviews(in bounds:CGRect,proposal:ProposedViewSize,subviews:Subviews,cache:inout ()) {
+        let positions=arrange(subviews,width:bounds.width).positions
+        for (index,subview) in subviews.enumerated() {
+            subview.place(at:CGPoint(x:bounds.minX+positions[index].x,y:bounds.minY+positions[index].y),anchor:.topLeading,proposal:.unspecified)
+        }
     }
 }
 

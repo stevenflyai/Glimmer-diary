@@ -58,6 +58,12 @@ final class EditorController:ObservableObject {
     }
     func format(_ action:String) {
         guard let selection=selection(),let view=validView(selection) else{return}
+        switch action {
+        case "list":view.toggleParagraphPrefix("• ");return
+        case "quote":view.toggleParagraphPrefix("❝ ");return
+        case "separator":view.insertParagraphSeparator();return
+        default:break
+        }
         let attributes=selection.range.length>0 ? view.textStorage!.attributes(at:selection.range.location,effectiveRange:nil):view.typingAttributes
         let font=attributes[.font] as? NSFont ?? view.defaultFont
         let remove:Bool
@@ -67,10 +73,7 @@ final class EditorController:ObservableObject {
         case "underline":remove=(attributes[.underlineStyle] as? NSNumber)?.intValue ?? 0 != 0
         case "strikethrough":remove=(attributes[.strikethroughStyle] as? NSNumber)?.intValue ?? 0 != 0
         case "clear":remove=false
-        default:
-            view.window?.makeFirstResponder(view)
-            view.insertText(action=="list" ? "• " : action=="quote" ? "❝ " : "\n────────────\n",replacementRange:selection.range)
-            return
+        default:return
         }
         style(selection){old in
             var attrs=old;let font=attrs[.font] as? NSFont ?? view.defaultFont;let manager=NSFontManager.shared
@@ -157,6 +160,12 @@ final class DiaryTextView:NSTextView {
     var documentID:UUID?
     var defaultFont=NSFont.systemFont(ofSize:18)
     var formatAction:((String)->Void)?
+    override func insertNewline(_ sender:Any?) {
+        if !continueParagraph() {super.insertNewline(sender)}
+    }
+    override func deleteBackward(_ sender:Any?) {
+        if !removeParagraphPrefixAtCaret() {super.deleteBackward(sender)}
+    }
     override func performKeyEquivalent(with event:NSEvent) -> Bool {
         if event.modifierFlags.intersection(.deviceIndependentFlagsMask)==[.command],window?.firstResponder===self,
            let key=event.charactersIgnoringModifiers?.lowercased(),let action=["b":"bold","i":"italic","u":"underline","k":"link"][key] {

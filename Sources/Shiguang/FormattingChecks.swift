@@ -6,6 +6,7 @@ import DiaryCore
 @MainActor
 enum FormattingChecks {
     static func run(root:URL) async throws {
+        try EditorParagraphChecks.run()
         let model=AppModel(supportOverride:root.appendingPathComponent("format-"+UUID().uuidString))
         let password="disposable-rich-format-check"
         _=try await model.store.create(password:password)

@@ -4,7 +4,7 @@
 
 <h1 align="center">Glimmer · 拾光</h1>
 
-<p align="center"><strong>Keep the little moments.</strong><br>macOS 14+ · Apple Silicon · Local encryption · Private journaling<br><a href="https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.2/Glimmer-1.1.2-AppleSilicon.dmg"><strong>Download for macOS · v1.1.2</strong></a> · <a href="https://github.com/stevenflyai/Glimmer-diary/releases/tag/v1.1.2">Release notes</a></p>
+<p align="center"><strong>Keep the little moments.</strong><br>macOS 14+ · Apple Silicon · Local encryption · Private journaling<br><a href="https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.3/Glimmer-1.1.3-AppleSilicon.dmg"><strong>Download for macOS · v1.1.3</strong></a> · <a href="https://github.com/stevenflyai/Glimmer-diary/releases/tag/v1.1.3">Release notes</a></p>
 
 <p align="center">
   <a href="README.md">简体中文</a> · <strong>English</strong>
@@ -15,7 +15,7 @@
 
 ![Glimmer in English: notebooks, an entry timeline, rich text tools, and encrypted save status](docs/images/journal-en.png)
 
-<p align="center"><sub>Actual app interface from version 1.1.2. All previews use entries prepared specifically for these screenshots.</sub></p>
+<p align="center"><sub>Previews show version 1.1.2; version 1.1.3 displays all formatting tools directly. All previews use entries prepared specifically for these screenshots.</sub></p>
 
 ## A little space for yourself
 
@@ -29,7 +29,7 @@
 | What you want to do | What Glimmer offers |
 | --- | --- |
 | Capture a day | Autosave, multiple entries per day, backdated entries, Chinese and English text input |
-| Make the page your own | Bold, italic, underline, strikethrough, links, text colors, highlights, fonts and sizes; bullets, quotes, and dividers |
+| Make the page your own | All 13 formatting controls stay visible and wrap in narrow windows: bold, italic, underline, strikethrough, links, colors, fonts, lists, quotes, dividers, and clear formatting |
 | Keep a photo with a thought | Insert, drag, or paste JPEG / PNG / HEIC images; write alongside them; double-click to enlarge |
 | Organize your everyday life | Notebooks, moods, tags, favorites, and local full-text search |
 | Revisit a memory | Calendar browsing, On This Day, version history, and a 30-day Recently Deleted folder |
@@ -38,6 +38,8 @@
 | Back up or export | Encrypted backup and restore; export an entry or the current list as PDF or Markdown with images |
 | Build a gentle routine | Optional daily reminders with generic notification text |
 | Use your preferred language | Switch between English and Simplified Chinese from the sign-in screen or Settings; existing writing and notebook names stay as written |
+
+Lists and quotes apply to whole paragraphs while preserving selected text and images. Return continues the list or quote; Return on an empty item exits it. Dividers are inserted after the selected paragraphs, with undo and redo support.
 
 Images support up to 50 MB each and 20 files per import. Markdown exports use inline HTML for underlines and colors; rendering depends on your reader's HTML/CSS support.
 
@@ -90,9 +92,9 @@ Encryption protects app data stored on disk. Content visible while the app is un
 
 ## Install and get started
 
-**Current version: 1.1.2 · Apple Silicon (M-series Macs) · macOS 14 or later**
+**Current version: 1.1.3 · Apple Silicon (M-series Macs) · macOS 14 or later**
 
-1. [Download the installer (v1.1.2 · Apple Silicon)](https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.2/Glimmer-1.1.2-AppleSilicon.dmg), or visit [Releases](https://github.com/stevenflyai/Glimmer-diary/releases) for release notes and SHA-256 checksums. You can also build from source below.
+1. [Download the installer (v1.1.3 · Apple Silicon)](https://github.com/stevenflyai/Glimmer-diary/releases/download/v1.1.3/Glimmer-1.1.3-AppleSilicon.dmg), or visit [Releases](https://github.com/stevenflyai/Glimmer-diary/releases) for release notes and SHA-256 checksums. You can also build from source below.
 2. Quit any running older version, open the disk image, and drag the app into Applications. Updates continue to use your existing password and entries.
 3. On first launch, choose a password of at least 10 characters. A unique, long passphrase is recommended. Save your recovery key and confirm its last eight characters.
 4. Choose **New entry** and start writing. Glimmer saves after a pause of about a second; `⌘S` saves immediately.
@@ -107,6 +109,7 @@ Current builds use an ad-hoc local signature and **are not signed with an Apple 
 | `⌘N` / `⌘S` | New entry / Save now |
 | `⌘B` / `⌘I` / `⌘U` | Bold / Italic / Underline |
 | `⌘K` | Add or edit a link |
+| `Return` / `Shift+Return` | Continue a list or quote (exit on an empty item) / Insert a soft line break |
 | `⌘` + click a link | Open the link |
 | `⌘F` / `⌘⇧F` | Search entries / Focus mode |
 | `⌘⇧L` | Lock journal |
@@ -155,7 +158,7 @@ Vendor/                Static dependencies and provenance
 docs/images/           README screenshots
 ```
 
-Checks on Apple Silicon / macOS 27.0.1 cover core encryption, backup restoration, rich text persistence, Chinese input, image and document export, and bilingual UI. The full set of Touch ID, location permission, notification, and OS-version combinations still needs testing on the corresponding devices. See the [validation record](VALIDATION.md) and [changelog](CHANGELOG.md), currently maintained in Chinese.
+Checks on Apple Silicon / macOS 27.0.1 and 27.2 cover core encryption, backup restoration, rich text persistence, Chinese input, image and document export, and bilingual UI. The full set of Touch ID, location permission, notification, and OS-version combinations still needs testing on the corresponding devices. See the [validation record](VALIDATION.md) and [changelog](CHANGELOG.md), currently maintained in Chinese.
 
 The current version focuses on a local Mac journal. **iCloud sync, iPhone/iPad apps, audio recording, OCR, and AI features are not currently included.**
 
